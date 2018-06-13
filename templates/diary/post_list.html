@@ -1,11 +1,25 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    {% for post in posts %}
-    <div class="post">
-        <p>published: {{ post.published_date }}</p>
-        <h1><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h1>
-        <p>{{ post.text|linebreaksbr }}</p>
+
+    <ul class="nav nav-pills categories">
+        <li class="active"><a href="#">摘抄</a></li>
+        <li><a href="#">感悟</a></li>
+        <li><a href="#">笔记</a></li>
+        <li><a href="#">心愿</a></li>
+        <li><a href="#">与她</a></li>
+    </ul>
+    <div class="container post">
+        {% for post in posts %}
+            <div class="row">
+                <div class="col-md-4 post-title">
+                    <h1><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h1>
+                    <p class="author"><strong>ylm</strong> <span class="text-muted">{{ post.published_date }}</span></p>
+                </div>
+                <div class="col-md-8 col-md-offset-0 post-body">
+                    {{ post.text|linebreaksbr }}
+                </div>
+            </div>
+        {% endfor %}
     </div>
-    {% endfor %}
 {% endblock %}
