@@ -15,7 +15,8 @@
                 <h1>{{ post.title }}</h1>
                 <p class="author"><strong>ylm</strong>
                     <span class="text-muted">{{ post.published_date }}</span>
-                    <a href="{% url 'post_edit' pk=post.pk %}"><span class="glyphicon glyphicon-pencil"></span ></a>
+                    <a href="{% url 'post_edit' pk=post.pk %}"><span class="icon-pencil"></span ></a>
+                    <a href="{% url 'post_remove' pk=post.pk %}"><span class="icon-remove"></span></a>
                 </p>
             </div>
             <div class="col-md-8 col-md-offset-0 post-body">

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+
+{% load staticfiles %}
+
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coffers</title>
+    <link rel="stylesheet" href="{% static "assets/bootstrap/css/bootstrap.min.css" %}">
+    <link rel="stylesheet" href="{% static "assets/font/fontAwesome/css/font-awesome.min.css" %}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Courgette">
+    <link rel="stylesheet" href="{% static "assets/css/user.css" %}">
+</head>
+
+<body>
+    <header style="background-image:url('{% static "image/background.jpg" %}');height:800px;">
+        <nav class="navbar navbar-default">
+            <div class="container">
+                <div class="navbar-header"><a class="navbar-brand" href="#" style="padding:40px;"><span class="text-title" style="font-size:37px;font-family:Courgette, cursive;">Coffers&nbsp;</span></a><button class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button></div>
+                <div
+                    class="collapse navbar-collapse" id="navcol-1">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="active" role="presentation"><a href="#">Newest</a></li>
+                        <li role="presentation"><a href="#">About me</a></li>
+                    </ul>
+            </div>
+            </div>
+        </nav>
+        <div class="container" style="width:250px;margin-top:150px;padding-top:15px;padding-bottom:15px;background-color:rgba(205,205,205,0.62);">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h4 class="text-center">Login</h4>
+                    </div>
+                </div>
+
+                <form class="form" action="{% url 'login' %}" method="post">
+                    {% csrf_token %}
+                    {{ form.non_field_errors }}
+                    <div class="row">
+                        {% for field in form %}
+    {#                            {{ field.label_tag }}#}
+                            <div class="col-md-12 form-group">
+                                {{ field }}
+                                {{ field.errors }}
+                            </div>
+                        {% endfor %}
+                    </div>
+                    <button class="btn btn-primary btn-block" type="submit" style="margin-top:10%;">登录</button>
+{#                隐藏控件input，用于接收url中的next变量，跳转到这个next对应的网址#}
+                    <input type="hidden" name="next" value="{{ next }}"/>
+
+                </form>
+        </div>
+    </header>
+    <footer>
+        <h5>Caffers by Liuming Yang © 2018</h5>
+    </footer>
+
+    <script src="{% static "assets/js/jquery.min.js" %}"></script>
+    <script src="{% static "assets/bootstrap/js/bootstrap.min.js" %}"></script>
+</body>
+
+</html>
