@@ -10,12 +10,17 @@
         <li><a href="#">与她</a></li>
     </ul>
     <div class="container post">
-        <div class="post-title-left">
-            <h1>{{ post.title }}</h1>
-            <p class="author"><strong>ylm</strong> <span class="text-muted">{{ post.published_date }}</span></p>
-        </div>
-        <div class="post-body">
-            {{ post.text|linebreaksbr }}
+        <div class="row">
+            <div class="col-md-4 post-title">
+                <h1>{{ post.title }}</h1>
+                <p class="author"><strong>ylm</strong>
+                    <span class="text-muted">{{ post.published_date }}</span>
+                    <a href="{% url 'post_edit' pk=post.pk %}"><span class="glyphicon glyphicon-pencil"></span ></a>
+                </p>
+            </div>
+            <div class="col-md-8 col-md-offset-0 post-body">
+                {{ post.text|linebreaksbr }}
+            </div>
         </div>
     </div>
 {% endblock %}
