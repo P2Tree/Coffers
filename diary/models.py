@@ -3,10 +3,11 @@ from django.utils import timezone
 
 class Post(models.Model):
     author = models.ForeignKey('auth.User', on_delete=models.CASCADE)
-    title = models.CharField(max_length=50)
-    text = models.TextField()
-    created_date = models.DateTimeField(default=timezone.now)
-    published_date = models.DateTimeField(blank=True, null=True)
+    title = models.CharField(u'标题', max_length=50)
+    text = models.TextField(u'内容')
+    created_date = models.DateTimeField(u'创建时间', default=timezone.now)
+    published_date = models.DateTimeField(u'发布时间', blank=True, null=True)
+    is_public = models.BooleanField(u'是否公开', default=False)
 
     def publish(self):
         self.published_date = timezone.now()

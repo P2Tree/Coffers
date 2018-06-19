@@ -7,6 +7,7 @@ from django.contrib.auth.decorators import login_required
 
 def post_list(request):
     posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('published_date')
+    # TODO: 特定推送功能
     return render(request, 'diary/post_list.html', {'posts': posts})
 
 def post_detail(request, pk):
@@ -52,3 +53,8 @@ def post_remove(request, pk):
     post = get_object_or_404(Post, pk=pk)
     post.delete()
     return redirect('post_list')
+
+def diary_list(request):
+    posts = Post.objects.filter(is_public=True).order_by('created_date')
+    #TODO: 特定推送功能
+    return render(request, 'diary/diary_list.html', {'posts': posts})
