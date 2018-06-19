@@ -5,6 +5,12 @@ from .forms import PostForm
 from django.shortcuts import redirect
 from django.contrib.auth.decorators import login_required
 
+def public_list(request):
+    posts = Post.objects.filter(is_public=True).order_by('created_date')
+    #TODO: 特定推送功能
+    return render(request, 'diary/public_list.html', {'posts': posts})
+
+@login_required
 def post_list(request):
     posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('published_date')
     # TODO: 特定推送功能
@@ -54,7 +60,3 @@ def post_remove(request, pk):
     post.delete()
     return redirect('post_list')
 
-def diary_list(request):
-    posts = Post.objects.filter(is_public=True).order_by('created_date')
-    #TODO: 特定推送功能
-    return render(request, 'diary/diary_list.html', {'posts': posts})
