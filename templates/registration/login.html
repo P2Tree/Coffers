@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Coffers</title>
     <link rel="stylesheet" href="{% static "assets/bootstrap/css/bootstrap.min.css" %}">
-    <link rel="stylesheet" href="{% static "assets/font/fontAwesome/css/font-awesome.min.css" %}">
+    <link rel="stylesheet" href="{% static "assets/font/css/font-awesome.min.css" %}">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Courgette">
     <link rel="stylesheet" href="{% static "assets/css/user.css" %}">
@@ -42,7 +42,7 @@
                     <div class="row">
                         {% for field in form %}
     {#                            {{ field.label_tag }}#}
-                            <div class="col-md-12 form-group">
+                            <div class="col-md-12 form-group" style="padding-left:25px;padding-right:25px;">
                                 {{ field }}
                                 {{ field.errors }}
                             </div>
@@ -61,6 +61,12 @@
 
     <script src="{% static "assets/js/jquery.min.js" %}"></script>
     <script src="{% static "assets/bootstrap/js/bootstrap.min.js" %}"></script>
+    <script>
+        var id_username=document.getElementById('id_username');
+        id_username.style.cssText='width:100%;border-radius:30px;padding-left:15px;outline:none;';
+        var id_password=document.getElementById('id_password');
+        id_password.style.cssText='width:100%;border-radius:30px;padding-left:15px;outline:none;';
+    </script>
 </body>
 
 </html>
