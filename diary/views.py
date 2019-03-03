@@ -23,18 +23,18 @@ def post_detail(request, pk):
 @login_required
 def post_new(request):
     if request.method == "POST":
-        form = PostForm(request.POST)
-        if form.is_valid():
-            post = form.save(commit=False)
+        post = PostForm(request.POST)
+        if post.is_valid():
+            post = post.save(commit=False)
             post.author = request.user
             post.published_date = timezone.now()
             post.save()
             return redirect('post_detail', pk=post.pk)
 
     else:
-        form = PostForm()
+        post = PostForm()
 
-    return render(request, 'diary/post_edit.html', {'form': form})
+    return render(request, 'diary/post_edit.html', {'post': post})
 
 @login_required
 def post_edit(request, pk):

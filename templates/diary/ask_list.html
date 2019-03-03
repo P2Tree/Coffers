@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <ul class="nav nav-pills categories">
+        <li class="active"><a href="#">摘抄</a></li>
+        <li><a href="#">感悟</a></li>
+        <li><a href="#">笔记</a></li>
+        <li><a href="#">心愿</a></li>
+        <li><a href="#">与她</a></li>
+    </ul>
+    <div class="container post">
+
+        {% for ask in asks %}
+            <div class="row">
+                <div class="col-md-4 post-title">
+                    <p class="author"><strong>ylm</strong> <span class="text-muted">{{ post.published_date }}</span></p>
+                </div>
+                <div class="col-md-8 col-md-offset-0 post-body">
+{#                    <h1><a href="{% url 'ask_list' pk=ask.pk %}">{{ ask.question }}</a></h1>#}
+                    <h1>{{ ask.question }}</h1>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

@@ -35,6 +35,7 @@
                         {% if user.is_authenticated %}
                             <li role="presentation"><a href="{% url 'post_list' %}" class="top-menu">Diary</a></li>
                             <li role="presentation"><a href="{% url 'post_new' %}" class="top-menu">Mark</a></li>
+                            <li role="presentation"><a href="{% url 'ask_list' %}" class="top-menu">Ask</a></li>
                             <li role="presentation"><a href="{% url 'logout' %}" class="top-menu">Leave</a></li>
                         {% else %}
                             <li role="presentation"><a href="{% url 'login' %}" class="top-menu">Enter</a></li>

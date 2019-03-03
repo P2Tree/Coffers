@@ -9,7 +9,7 @@
             <div class="col-md-8 col-md-offset-0 post-body">
                 <form method="POST" class="post-form">
                 {% csrf_token %}
-                {{ form.as_p }}
+                {{ post.as_p }}
                 <button type="submit" class="save btn">Save</button>
                 </form>
             </div>
