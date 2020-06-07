@@ -25,7 +25,7 @@ SECRET_KEY = '9)6&zv@lu*9o!-ar+%-l+wl%b*^g=#_(davo!h76g6c780un(s'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_crontab',
     'diary',
     'ask',
     'xuexi',
@@ -129,3 +130,16 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 LOGIN_REDIRECT_URL = '/'
+
+# Email settings
+EMAIL_HOST = 'smtp.163.com'
+EMAIL_PORT = '25'
+EMAIL_HOST_USER = 'axelylm@163.com'
+EMAIL_HOST_PASSWORD = 'KYDLGMSBWOMSPXGS'
+EMAIL_SUBJECT_PREFIX = '[Coffers Reminder]'
+EMAIL_USE_TLS = True
+
+# Crontab
+CRONJOBS = [
+    ('*/1 * * * *', 'xuexi.check.daily_check', '> /Users/hanhuijie/crontab.log'),
+]
