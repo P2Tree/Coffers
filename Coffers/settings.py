@@ -132,14 +132,14 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 LOGIN_REDIRECT_URL = '/'
 
 # Email settings
-EMAIL_HOST = 'smtp.163.com'
-EMAIL_PORT = '25'
-EMAIL_HOST_USER = 'axelylm@163.com'
-EMAIL_HOST_PASSWORD = 'KYDLGMSBWOMSPXGS'
-EMAIL_SUBJECT_PREFIX = '[Coffers Reminder]'
-EMAIL_USE_TLS = True
+#  EMAIL_HOST = 'smtp.email.com'
+#  EMAIL_PORT = '25'
+#  EMAIL_HOST_USER = 'email@email.com'
+#  EMAIL_HOST_PASSWORD = ''
+#  EMAIL_SUBJECT_PREFIX = '[Coffers Reminder]'
+#  EMAIL_USE_TLS = True
 
 # Crontab
 CRONJOBS = [
-    ('*/1 * * * *', 'xuexi.check.daily_check', '> /Users/hanhuijie/crontab.log'),
+    ('*/1 * * * *', 'xuexi.check.daily_check', '> /home/ylm/Coffers/crontab.log'),
 ]
