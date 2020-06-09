@@ -2,12 +2,22 @@
 from django.core.mail import send_mail
 from .models import XuexiRecord
 from datetime import datetime, timedelta
+from apscheduler.schedulers.background import BackgroundScheduler
+from django_apscheduler.jobstores import DjangoJobStore, register_events, register_job
+import logging
 import requests
 
-# crontab method
+logging.basicConfig()
+
+scheduler = BackgroundScheduler()
+scheduler.add_jobstore(DjangoJobStore(), 'default')
+
+@register_job(scheduler, 'cron', id='daily_check', hour=23, minute=10)
 def daily_check():
-    # crontab settings can found in settings.py
     check()
+
+register_events(scheduler)
+scheduler.start()
 
 def check():
     utcnow = datetime.utcnow()
