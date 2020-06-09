@@ -37,7 +37,7 @@ def help(request):
 
 def manual_check(request):
     r = check()
-    if r == '1':
+    if r:
         return HttpResponse("今日已签到")
     else:
         return HttpResponse("今日未签到，已发送提醒邮件")
