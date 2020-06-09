@@ -5,10 +5,12 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from .check import check
 from .models import XuexiRecord
-import datetime
+from datetime import datetime, timedelta
 
 def qiandao(request, complete):
-    today = datetime.date.today()
+    utcnow = datetime.utcnow()
+    now = utcnow + timedelta(hours=8)
+    today = now.date()
     records = XuexiRecord.objects.filter(record_date=today)
     ret_str = ""
     if complete != '1' and complete != '0':

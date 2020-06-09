@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 from django.core.mail import send_mail
 from .models import XuexiRecord
-import datetime
+from datetime import datetime, timedelta
 import requests
 
 # crontab method
@@ -10,7 +10,9 @@ def daily_check():
     check()
 
 def check():
-    today = datetime.date.today()
+    utcnow = datetime.utcnow()
+    now = utcnow + timedelta(hours=8)
+    today = now.date()
     records = XuexiRecord.objects.filter(record_date=today)
     if records:
         if records[0].is_complete == True:
