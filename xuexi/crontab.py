@@ -1,10 +1,7 @@
 # -*- encoding: utf-8 -*-
 import sqlite3
 from datetime import datetime, timedelta
-
-import smtplib
-from email.mime.text import MIMEText
-from email.header import Header
+from sending_mail import SendingMail as SM
 
 # 本文件不属于 Coffers Django 后台的一部分
 # 因为目前预备部署在 pythonanywhere 上，但免费账户限制比较多
@@ -29,36 +26,9 @@ def daily_check(c):
     for row in cursor:
         if row[0] == 1:
             return True
-
-    send_mail()
+    sm = SM()
+    sm.send_mail_from_script()
     return False
-
-def send_mail():
-    mail_host = "smtp.gmail.com"
-    mail_user =
-    mail_pass =
-
-    sender = 'dicksonliuming@gmail.com'
-    receivers = ['ylm1205@163.com']
-
-    message = MIMEText('今天的学习强国完成了吗？ 完成请忽略。\n这是一封自动发送的邮件，请勿回复。', 'plain', 'utf-8')
-    message['From'] = Header("学习强国引导助手", 'utf-8')
-
-    subject = '今天的学习强国完成了吗'
-    message['Subject'] = Header(subject, 'utf-8')
-
-    server = smtplib.SMTP(mail_host, 25)
-    server.set_debuglevel(1)
-    server.ehlo()
-    server.starttls()
-    server.login(mail_user, mail_pass)
-    server.sendmail(sender, receivers, message.as_string())
-    server.quit()
-    #  smtpObj = smtplib.SMTP()
-    #  smtpObj.connect(mail_host, 587)
-    #  smtpObj.login(mail_user, mail_pass)
-    #  smtpObj.sendmail(sender, receivers, message.as_string())
-
 
 if __name__ == "__main__":
     conn = sqlite3.connect('db.sqlite3')

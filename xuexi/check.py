@@ -1,9 +1,9 @@
 # -*- encoding: utf-8 -*-
-from django.core.mail import send_mail
 from .models import XuexiRecord
 from datetime import datetime, timedelta
 import logging
 import requests
+from sending_mail import SendingMail as SM
 
 logging.basicConfig()
 
@@ -18,6 +18,7 @@ def check():
     else:
         new_record = XuexiRecord(is_complete=False, record_date=today)
         new_record.save()
-    send_mail(u'学习强国提醒', u'今天忘记学习强国了！', 'Coffers Reminder <dicksonliuming@gmail.com>', ['ylm1205@163.com'])
 
+    sm = SM()
+    sm.send_mail_from_django()
     return False

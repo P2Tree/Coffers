@@ -132,13 +132,13 @@ LOGIN_REDIRECT_URL = '/'
 
 # Email settings
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_PORT = 587
-EMAIL_HOST_USER = '@gmail.com'
-EMAIL_HOST_PASSWORD = ''
-EMAIL_SUBJECT_PREFIX = '[Coffers Reminder]'
+EMAIL_PORT =
+EMAIL_HOST_USER =
+EMAIL_HOST_PASSWORD =
+EMAIL_SUBJECT_PREFIX = ''
 EMAIL_USE_TLS = True
 
-# Crontab
-CRONJOBS = [
-    ('*/1 * * * *', 'xuexi.check.daily_check', '> /home/ylm/Coffers/crontab.log'),
-]
+# Crontab (not used at all)
+#  CRONJOBS = [
+    #  ('*/1 * * * *', 'xuexi.check.daily_check', '> /home/ylm/Coffers/crontab.log'),
+#  ]
